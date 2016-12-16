@@ -3,15 +3,6 @@
   "columns":
     [
       {
-        "name":"id",
-        "type":"INTEGER",
-        "length":"0",
-        "notNull":"true",
-        "primaryKey":"true",
-        "defaultValue":""
-      }
-      ,
-      {
         "name":"region",
         "type":"INTEGER",
         "length":"100",
