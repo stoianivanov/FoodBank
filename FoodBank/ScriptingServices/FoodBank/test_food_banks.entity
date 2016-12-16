@@ -1,0 +1,15 @@
+{
+  "entityName":"Food_banks",
+  "tableName":"FOOD_BANKS",
+  "tableType":"TABLE",
+  "serviceName":"test_food_banks.js",
+  "libraryName":"test_food_banks_lib.js",
+  "specification":"test_food_banks.swagger",
+  "getEnabled":"true",
+  "postEnabled":"true",
+  "putEnabled":"true",
+  "deleteEnabled":"true",
+  "countEnabled":"true",
+  "offsetAndLimitEnabled":"true",
+  "metadataEnabled":"true"
+}

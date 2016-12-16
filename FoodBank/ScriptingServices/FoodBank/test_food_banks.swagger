@@ -1,0 +1,209 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "Food_banks Entity Service",
+        "description":"This is a RESTful web service for listing, viewing and managing entities of the type 'Food_banks'"
+    },
+    "basePath":"/services",
+    "tags":[
+      {
+         "name":"Food_banks",
+         "description":"View and manage Food_banks objects"
+      }
+    ],
+    "paths": {
+        "/js/FoodBank/test_food_banks.js": {
+            "get": {
+            	"tags":[
+               		"Food_banks"
+            	],
+                "description": "Gets 'Food_banks' objects.\n",
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Count of all the records",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Identifier of the 'Food_banks' object",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "metadata",
+                        "in": "query",
+                        "description": "Metadata of the 'Food_banks' object",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit of the objects list",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset of the objects list",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort parameter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "description": "Descending order",
+                        "required": false,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema":{
+		                     "$ref":"#/definitions/Food_banks"
+                        }
+                    }
+                }
+            },
+            "post": {
+            	"tags":[
+               		"Food_banks"
+            	],
+                "description": "Creates a new 'Food_banks' object.\n",
+                "consumes":[
+	               "application/json"
+	            ],
+	            "produces":[
+	               "plain/text"
+	            ],
+	            "parameters":[
+	               {
+	                  "in":"body",
+	                  "name":"body",
+	                  "description":"Food_banks object that needs to be added",
+	                  "required":true,
+	                  "schema":{
+	                     "$ref":"#/definitions/Food_banks"
+	                  }
+	               }
+	            ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema":{
+		                     "$ref":"#/definitions/Food_banks"
+                        }
+                    }
+                }
+            },
+            "put": {
+            	"tags":[
+               		"Food_banks"
+            	],
+                "description": "Updates an existing 'Food_banks' object.\n",
+                "consumes":[
+	               "application/json"
+	            ],
+	            "produces":[
+	               "plain/text"
+	            ],
+	            "parameters":[
+	               {
+	                  "in":"body",
+	                  "name":"body",
+	                  "description":"Food_banks object that needs to be added",
+	                  "required":true,
+	                  "schema":{
+	                     "$ref":"#/definitions/Food_banks"
+	                  }
+	               }
+	            ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema":{
+		                     "$ref":"#/definitions/Food_banks"
+                        }
+                    }
+                }
+            },
+            "delete": {
+            	"tags":[
+               		"Food_banks"
+            	],
+                "description": "Deletes 'Food_banks' objects.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Identifier of the 'Food_banks' object",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema":{
+		                     "$ref":"#/definitions/Food_banks"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "Food_banks": {
+	        "type":"object",
+	        "properties": {
+        		"id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"region": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"user_name": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"email": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"password": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"mobile": {
+	            	"type": 
+        "integer"
+	    		}
+	        }
+        }
+	}
+}
