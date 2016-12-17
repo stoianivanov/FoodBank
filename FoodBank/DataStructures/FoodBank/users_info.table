@@ -1,5 +1,5 @@
 {
-  "tableName":"food_bank",
+  "tableName":"users_info",
   "columns":
     [
       {
@@ -12,27 +12,9 @@
       }
       ,
       {
-        "name":"name",
-        "type":"VARCHAR",
-        "length":"128",
-        "notNull":"false",
-        "primaryKey":"false",
-        "defaultValue":""
-      }
-      ,
-      {
-        "name":"region",
-        "type":"INTEGER",
-        "length":"0",
-        "notNull":"false",
-        "primaryKey":"false",
-        "defaultValue":""
-      }
-      ,
-      {
         "name":"username",
         "type":"VARCHAR",
-        "length":"64",
+        "length":"128",
         "notNull":"false",
         "primaryKey":"false",
         "defaultValue":""
@@ -41,7 +23,7 @@
       {
         "name":"password",
         "type":"VARCHAR",
-        "length":"128",
+        "length":"64",
         "notNull":"false",
         "primaryKey":"false",
         "defaultValue":""
@@ -57,9 +39,27 @@
       }
       ,
       {
-        "name":"owner",
+        "name":"realname",
         "type":"VARCHAR",
         "length":"128",
+        "notNull":"false",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
+      ,
+      {
+        "name":"type",
+        "type":"INTEGER",
+        "length":"0",
+        "notNull":"false",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
+      ,
+      {
+        "name":"type_id",
+        "type":"INTEGER",
+        "length":"0",
         "notNull":"false",
         "primaryKey":"false",
         "defaultValue":""

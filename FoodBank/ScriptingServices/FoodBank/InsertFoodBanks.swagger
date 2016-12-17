@@ -2,23 +2,23 @@
     "swagger": "2.0",
     "info": {
         "version": "0.0.0",
-        "title": "Food_banks Entity Service",
-        "description":"This is a RESTful web service for listing, viewing and managing entities of the type 'Food_banks'"
+        "title": "Foodbanks Entity Service",
+        "description":"This is a RESTful web service for listing, viewing and managing entities of the type 'Foodbanks'"
     },
     "basePath":"/services",
     "tags":[
       {
-         "name":"Food_banks",
-         "description":"View and manage Food_banks objects"
+         "name":"Foodbanks",
+         "description":"View and manage Foodbanks objects"
       }
     ],
     "paths": {
-        "/js/FoodBank/test_food_banks.js": {
+        "/js/FoodBank/InsertFoodBanks.js": {
             "get": {
             	"tags":[
-               		"Food_banks"
+               		"Foodbanks"
             	],
-                "description": "Gets 'Food_banks' objects.\n",
+                "description": "Gets 'Foodbanks' objects.\n",
                 "parameters": [
                     {
                         "name": "count",
@@ -30,7 +30,7 @@
                     {
                         "name": "id",
                         "in": "query",
-                        "description": "Identifier of the 'Food_banks' object",
+                        "description": "Identifier of the 'Foodbanks' object",
                         "required": false,
                         "type": "integer",
                         "format": "int32"
@@ -38,7 +38,7 @@
                     {
                         "name": "metadata",
                         "in": "query",
-                        "description": "Metadata of the 'Food_banks' object",
+                        "description": "Metadata of the 'Foodbanks' object",
                         "required": false,
                         "type": "boolean"
                     },
@@ -77,16 +77,16 @@
                     "200": {
                         "description": "Successful response",
                         "schema":{
-		                     "$ref":"#/definitions/Food_banks"
+		                     "$ref":"#/definitions/Foodbanks"
                         }
                     }
                 }
             },
             "post": {
             	"tags":[
-               		"Food_banks"
+               		"Foodbanks"
             	],
-                "description": "Creates a new 'Food_banks' object.\n",
+                "description": "Creates a new 'Foodbanks' object.\n",
                 "consumes":[
 	               "application/json"
 	            ],
@@ -97,10 +97,10 @@
 	               {
 	                  "in":"body",
 	                  "name":"body",
-	                  "description":"Food_banks object that needs to be added",
+	                  "description":"Foodbanks object that needs to be added",
 	                  "required":true,
 	                  "schema":{
-	                     "$ref":"#/definitions/Food_banks"
+	                     "$ref":"#/definitions/Foodbanks"
 	                  }
 	               }
 	            ],
@@ -108,16 +108,16 @@
                     "200": {
                         "description": "Successful response",
                         "schema":{
-		                     "$ref":"#/definitions/Food_banks"
+		                     "$ref":"#/definitions/Foodbanks"
                         }
                     }
                 }
             },
             "put": {
             	"tags":[
-               		"Food_banks"
+               		"Foodbanks"
             	],
-                "description": "Updates an existing 'Food_banks' object.\n",
+                "description": "Updates an existing 'Foodbanks' object.\n",
                 "consumes":[
 	               "application/json"
 	            ],
@@ -128,10 +128,10 @@
 	               {
 	                  "in":"body",
 	                  "name":"body",
-	                  "description":"Food_banks object that needs to be added",
+	                  "description":"Foodbanks object that needs to be added",
 	                  "required":true,
 	                  "schema":{
-	                     "$ref":"#/definitions/Food_banks"
+	                     "$ref":"#/definitions/Foodbanks"
 	                  }
 	               }
 	            ],
@@ -139,21 +139,21 @@
                     "200": {
                         "description": "Successful response",
                         "schema":{
-		                     "$ref":"#/definitions/Food_banks"
+		                     "$ref":"#/definitions/Foodbanks"
                         }
                     }
                 }
             },
             "delete": {
             	"tags":[
-               		"Food_banks"
+               		"Foodbanks"
             	],
-                "description": "Deletes 'Food_banks' objects.\n",
+                "description": "Deletes 'Foodbanks' objects.\n",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "query",
-                        "description": "Identifier of the 'Food_banks' object",
+                        "description": "Identifier of the 'Foodbanks' object",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -163,7 +163,7 @@
                     "200": {
                         "description": "Successful response",
                         "schema":{
-		                     "$ref":"#/definitions/Food_banks"
+		                     "$ref":"#/definitions/Foodbanks"
                         }
                     }
                 }
@@ -171,7 +171,7 @@
         }
     },
     "definitions":{
-        "Food_banks": {
+        "Foodbanks": {
 	        "type":"object",
 	        "properties": {
         		"id": {
@@ -184,24 +184,14 @@
         "integer"
 	    		}
 				,
-        		"user_name": {
+        		"name": {
 	            	"type": 
         "string"
 	    		}
 				,
-        		"email": {
+        		"owner": {
 	            	"type": 
         "string"
-	    		}
-				,
-        		"password": {
-	            	"type": 
-        "string"
-	    		}
-				,
-        		"mobile": {
-	            	"type": 
-        "integer"
 	    		}
 	        }
         }

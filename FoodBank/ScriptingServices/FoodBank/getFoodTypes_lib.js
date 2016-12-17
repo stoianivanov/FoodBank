@@ -9,30 +9,18 @@ var xss = require("utils/xss");
 var datasource = database.getDatasource();
 
 // create entity by parsing JSON object from request body
-exports.createFood_banks = function() {
+exports.createFood_types = function() {
     var input = request.readInputText();
     var requestBody = JSON.parse(input);
     var connection = datasource.getConnection();
     try {
-        var sql = "INSERT INTO FOOD_BANKS (";
+        var sql = "INSERT INTO FOOD_TYPES (";
         sql += "ID";
         sql += ",";
-        sql += "REGION";
+        sql += "NAME";
         sql += ",";
-        sql += "USER_NAME";
-        sql += ",";
-        sql += "EMAIL";
-        sql += ",";
-        sql += "PASSWORD";
-        sql += ",";
-        sql += "MOBILE";
+        sql += "MAX_EXPIRATION";
         sql += ") VALUES ("; 
-        sql += "?";
-        sql += ",";
-        sql += "?";
-        sql += ",";
-        sql += "?";
-        sql += ",";
         sql += "?";
         sql += ",";
         sql += "?";
@@ -42,13 +30,10 @@ exports.createFood_banks = function() {
 
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        var id = datasource.getSequence('FOOD_BANKS_ID').next();
+        var id = datasource.getSequence('FOOD_TYPES_ID').next();
         statement.setInt(++i, id);
-        statement.setInt(++i, requestBody.region);
-        statement.setString(++i, requestBody.user_name);
-        statement.setString(++i, requestBody.email);
-        statement.setString(++i, requestBody.password);
-        statement.setInt(++i, requestBody.mobile);
+        statement.setString(++i, requestBody.name);
+        statement.setInt(++i, requestBody.max_expiration);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -62,11 +47,11 @@ exports.createFood_banks = function() {
 };
 
 // read single entity by id and print as JSON object to response
-exports.readFood_banksEntity = function(id) {
+exports.readFood_typesEntity = function(id) {
     var connection = datasource.getConnection();
     try {
         var result;
-        var sql = "SELECT * FROM FOOD_BANKS WHERE " + exports.pkToSQL();
+        var sql = "SELECT * FROM FOOD_TYPES WHERE " + exports.pkToSQL();
         var statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         
@@ -87,7 +72,7 @@ exports.readFood_banksEntity = function(id) {
 };
 
 // read all entities and print them as JSON array to response
-exports.readFood_banksList = function(limit, offset, sort, desc) {
+exports.readFood_typesList = function(limit, offset, sort, desc) {
     var connection = datasource.getConnection();
     try {
         var result = [];
@@ -95,7 +80,7 @@ exports.readFood_banksList = function(limit, offset, sort, desc) {
         if (limit !== null && offset !== null) {
             sql += " " + datasource.getPaging().genTopAndStart(limit, offset);
         }
-        sql += " * FROM FOOD_BANKS";
+        sql += " * FROM FOOD_TYPES";
         if (sort !== null) {
             sql += " ORDER BY " + sort;
         }
@@ -124,11 +109,8 @@ exports.readFood_banksList = function(limit, offset, sort, desc) {
 function createEntity(resultSet) {
     var result = {};
 	result.id = resultSet.getInt("ID");
-	result.region = resultSet.getInt("REGION");
-    result.user_name = resultSet.getString("USER_NAME");
-    result.email = resultSet.getString("EMAIL");
-    result.password = resultSet.getString("PASSWORD");
-	result.mobile = resultSet.getInt("MOBILE");
+    result.name = resultSet.getString("NAME");
+	result.max_expiration = resultSet.getInt("MAX_EXPIRATION");
     return result;
 }
 
@@ -140,29 +122,20 @@ function convertToDateString(date) {
 }
 
 // update entity by id
-exports.updateFood_banks = function() {
+exports.updateFood_types = function() {
     var input = request.readInputText();
     var responseBody = JSON.parse(input);
     var connection = datasource.getConnection();
     try {
-        var sql = "UPDATE FOOD_BANKS SET ";
-        sql += "REGION = ?";
+        var sql = "UPDATE FOOD_TYPES SET ";
+        sql += "NAME = ?";
         sql += ",";
-        sql += "USER_NAME = ?";
-        sql += ",";
-        sql += "EMAIL = ?";
-        sql += ",";
-        sql += "PASSWORD = ?";
-        sql += ",";
-        sql += "MOBILE = ?";
+        sql += "MAX_EXPIRATION = ?";
         sql += " WHERE ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        statement.setInt(++i, responseBody.region);
-        statement.setString(++i, responseBody.user_name);
-        statement.setString(++i, responseBody.email);
-        statement.setString(++i, responseBody.password);
-        statement.setInt(++i, responseBody.mobile);
+        statement.setString(++i, responseBody.name);
+        statement.setInt(++i, responseBody.max_expiration);
         var id = responseBody.id;
         statement.setInt(++i, id);
         statement.executeUpdate();
@@ -176,10 +149,10 @@ exports.updateFood_banks = function() {
 };
 
 // delete entity
-exports.deleteFood_banks = function(id) {
+exports.deleteFood_types = function(id) {
     var connection = datasource.getConnection();
     try {
-    	var sql = "DELETE FROM FOOD_BANKS WHERE " + exports.pkToSQL();
+    	var sql = "DELETE FROM FOOD_TYPES WHERE " + exports.pkToSQL();
         var statement = connection.prepareStatement(sql);
         statement.setString(1, id);
         statement.executeUpdate();
@@ -192,11 +165,11 @@ exports.deleteFood_banks = function(id) {
     }
 };
 
-exports.countFood_banks = function() {
+exports.countFood_types = function() {
     var count = 0;
     var connection = datasource.getConnection();
     try {
-    	var sql = 'SELECT COUNT(*) FROM FOOD_BANKS';
+    	var sql = 'SELECT COUNT(*) FROM FOOD_TYPES';
         var statement = connection.prepareStatement(sql);
         var rs = statement.executeQuery();
         if (rs.next()) {
@@ -211,9 +184,9 @@ exports.countFood_banks = function() {
     response.println(count);
 };
 
-exports.metadataFood_banks = function() {
+exports.metadataFood_types = function() {
 	var entityMetadata = {
-		name: 'food_banks',
+		name: 'food_types',
 		type: 'object',
 		properties: []
 	};
@@ -226,35 +199,17 @@ exports.metadataFood_banks = function() {
 	};
     entityMetadata.properties.push(propertyid);
 
-	var propertyregion = {
-		name: 'region',
+	var propertyname = {
+		name: 'name',
+		type: 'string'
+	};
+    entityMetadata.properties.push(propertyname);
+
+	var propertymax_expiration = {
+		name: 'max_expiration',
 		type: 'integer'
 	};
-    entityMetadata.properties.push(propertyregion);
-
-	var propertyuser_name = {
-		name: 'user_name',
-		type: 'string'
-	};
-    entityMetadata.properties.push(propertyuser_name);
-
-	var propertyemail = {
-		name: 'email',
-		type: 'string'
-	};
-    entityMetadata.properties.push(propertyemail);
-
-	var propertypassword = {
-		name: 'password',
-		type: 'string'
-	};
-    entityMetadata.properties.push(propertypassword);
-
-	var propertymobile = {
-		name: 'mobile',
-		type: 'integer'
-	};
-    entityMetadata.properties.push(propertymobile);
+    entityMetadata.properties.push(propertymax_expiration);
 
 
 	response.println(JSON.stringify(entityMetadata));

@@ -1,7 +1,7 @@
 /* globals $ */
 /* eslint-env node, dirigible */
 
-var entityFood_banks = require('FoodBank/test_food_banks_lib');
+var entityFood_types = require('FoodBank/insertFoodType_lib');
 var request = require("net/http/request");
 var response = require("net/http/response");
 var xss = require("utils/xss");
@@ -18,7 +18,7 @@ function handleRequest() {
 	method = method.toUpperCase();
 	
 	//get primary keys (one primary key is supported!)
-	var idParameter = entityFood_banks.getPrimaryKey();
+	var idParameter = entityFood_types.getPrimaryKey();
 	
 	// retrieve the id as parameter if exist 
 	var id = xss.escapeSql(request.getAttribute("path"));
@@ -39,32 +39,32 @@ function handleRequest() {
 		offset = 0;
 	}
 	
-	if(!entityFood_banks.hasConflictingParameters(id, count, metadata)) {
+	if(!entityFood_types.hasConflictingParameters(id, count, metadata)) {
 		// switch based on method type
 		if ((method === 'POST')) {
 			// create
-			entityFood_banks.createFood_banks();
+			entityFood_types.createFood_types();
 		} else if ((method === 'GET')) {
 			// read
 			if (id) {
-				entityFood_banks.readFood_banksEntity(id);
+				entityFood_types.readFood_typesEntity(id);
 			} else if (count !== null) {
-				entityFood_banks.countFood_banks();
+				entityFood_types.countFood_types();
 			} else if (metadata !== null) {
-				entityFood_banks.metadataFood_banks();
+				entityFood_types.metadataFood_types();
 			} else {
-				entityFood_banks.readFood_banksList(limit, offset, sort, desc);
+				entityFood_types.readFood_typesList(limit, offset, sort, desc);
 			}
 		} else if ((method === 'PUT')) {
 			// update
-			entityFood_banks.updateFood_banks();    
+			entityFood_types.updateFood_types();    
 		} else if ((method === 'DELETE')) {
 			// delete
-			if(entityFood_banks.isInputParameterValid(idParameter)){
-				entityFood_banks.deleteFood_banks(id);
+			if(entityFood_types.isInputParameterValid(idParameter)){
+				entityFood_types.deleteFood_types(id);
 			}
 		} else {
-			entityFood_banks.printError(response.BAD_REQUEST, 4, "Invalid HTTP Method", method);
+			entityFood_types.printError(response.BAD_REQUEST, 4, "Invalid HTTP Method", method);
 		}
 	}
 	
