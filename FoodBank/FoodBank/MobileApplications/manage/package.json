@@ -1,6 +1,0 @@
-{
-  "main": "manage.js",
-  "dependencies": {
-    "tabris": "^1.9.0"
-  }
-}
